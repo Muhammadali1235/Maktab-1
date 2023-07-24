@@ -1,15 +1,31 @@
 const mongoose = require("mongoose");
 
 const Parent = mongoose.model('Parent ', {
-    name: String,
-    lastname: String,
-    password: String,
-    number:Number,  
-    age:Number,
-    username:{
-    type:String,
-    unique:true
-    }
+    name: {
+        type: String,
+        required: true 
+    },
+    lastname: {
+        type: String,
+        required: true 
+    },
+    username: {
+        type: String,
+        required: true,
+        unique:true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    number: {
+        type: Number,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    } 
 });
 
 module.exports = Parent
