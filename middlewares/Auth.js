@@ -33,7 +33,7 @@ async function chackUser(req, res, next) {
         } else {
             const validPassword = await bcrypt.compare(password, user.password);
             if (!validPassword) {
-                res.status(401).send("kimni akkauntini buzyapsan");
+                res.status(401).send("password no'to'g'ri");
             } else {
                 next()
             }

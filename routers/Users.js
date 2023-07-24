@@ -27,7 +27,8 @@ router.post("/create", async (req, res) => {
                     name: req.body.name,
                     age: req.body.age,
                     lastname: req.body.lastname,
-                    number: req.body.tel
+                    number: req.body.number,
+                    sinf: req.body.sinf
                 });
                 await newUser.save()
                     .then(() => res.status(201).send("yaratildi"))
@@ -35,9 +36,6 @@ router.post("/create", async (req, res) => {
             }
         });
     });
-
-
-
 })
 
 router.delete("/delete/:id", async (req, res) => {
