@@ -1,7 +1,7 @@
 const User = require("../models/Parent")
 const router = require("express").Router()
 const bcrypt = require("bcrypt")
-const { checkUser } = require("../middleware/Auth")
+const { checkUser } = require("../middlewares/Auth")
 
 
 router.get("/get", async (req, res) => {

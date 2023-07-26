@@ -1,7 +1,7 @@
 const Teacher = require("../models/Teacher")
 const router = require("express").Router()
 const bcrypt = require("bcrypt")
-const { chackUser } = require("../middlewares/Auth")
+const { checkUser } = require("../middlewares/Auth")
 
 router.get("/get", async (req, res) => {
     try {
@@ -51,7 +51,7 @@ router.put("/update/:id", async (req, res) => {
         .catch(error => res.status(404).send("Nimadir xato ketdi"))
 })
 
-router.post("/login", chackUser, async (req, res) => {
+router.post("/login", checkUser, async (req, res) => {
 
     res.status(200).send("saytgaxush kelibsiz")
 

@@ -12,7 +12,7 @@ app.use(cors())
 const url = "mongodb+srv://rahimjonovmuhammadali1:muhammadali123@muhammadali.hckhbhr.mongodb.net/maktab?retryWrites=true&w=majority"
 mongoose.connect(url)
     .then(res => console.log("ishladi"))
-    .catch(error => console.log(error))
+    .catch(error => console.log("error"))
 
  app.use("/parent", Parent)
  app.use("/sinf", Sinf)

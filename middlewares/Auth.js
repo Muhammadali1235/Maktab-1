@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const Teacher = require("../models/Teacher")
 const User = require("../models/User");
-async function chackUser(req, res, next) {
+async function checkUser(req, res, next) {
     const { username, password } = req.body;
     console.log(username)
     try {
@@ -43,4 +43,4 @@ async function chackUser(req, res, next) {
     }
 }
 
-module.exports = { chackUser }
+module.exports = { checkUser }
