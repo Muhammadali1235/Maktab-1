@@ -1,17 +1,17 @@
-const Teacher = require("../models/Teacher")
+const User = require("../models/Parent")
 const router = require("express").Router()
 const bcrypt = require("bcrypt")
 const { checkUser } = require("../middlewares/Auth")
 
+
 router.get("/get", async (req, res) => {
     try {
-        const teacher = await Teacher.find()
-        res.send(teacher)
+        const users = await User.find();
+        res.send(users);
     } catch (error) {
-        res.status(500).send("Error retwing cats")
+        res.status(500).send("User topilmadi");
     }
 })
-
 router.post("/create", async (req, res) => {
     let password = req.body.password
     let salt = 15
@@ -19,33 +19,33 @@ router.post("/create", async (req, res) => {
     bcrypt.genSalt(salt, function (err, salt) {
         bcrypt.hash(password, salt, async function (err, hashpassword) {
             if (err) {
-                console.log("xato bor1")
+                console.log("xato bor")
             } else {
-                const newUser = new Teacher({
-                    name: req.body.name,
-                    lastname: req.body.lastname,
-                    subject: req.body.subject,
-                    tel: req.body.tel,
+                const newUser = new User({
                     username: req.body.username,
-                    password: hashpassword
+                    password: hashpassword,
+                    name: req.body.name,
+                    age: req.body.age,
+                    lastname: req.body.lastname,
+                    number: req.body.number
                 });
                 await newUser.save()
-                    .then(() => res.status(201).send("yaratildi"))
+                    .then(() => res.status(201).send(newUser))
                     .catch(error => res.status(404).send("Bu user allaqachon yaratilgan"))
             }
         });
     });
 })
 
-
 router.delete("/delete/:id", async (req, res) => {
-    const teacher = await Teacher.findByIdAndDelete(req.params.id)
-    await res.send(` ${teacher.name} o'chirildi`)
+    const user = await User.findByIdAndDelete(req.params.id);
+    await res.send(` ${user.name} o'chirib tashlandi `)
 })
-
 router.put("/update/:id", async (req, res) => {
-    const user = await Teacher.findById(req.params.id);
-    user.name = req.body.name
+    const user = await User.findById(req.params.id);
+    user.name = req.body.name,
+    user.age =  req.body.age,
+    user.number = req.body.number
     await user.save()
         .then(() => res.status(201).send("User yangilandi"))
         .catch(error => res.status(404).send("Nimadir xato ketdi"))
@@ -53,7 +53,9 @@ router.put("/update/:id", async (req, res) => {
 
 router.post("/login", checkUser, async (req, res) => {
 
-    res.status(200).send("saytgaxush kelibsiz")
+    res.status(200).send("Saytga xush kelibsiz")
 
 })
+
+
 module.exports = router
